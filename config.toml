@@ -1,0 +1,28 @@
+baseURL = "https://istioworkshop.io/"
+languageCode = "en-us"
+defaultContentLanguage = "en"
+
+title = "Istio Service Mesh Workshop"
+theme = "hugo-theme-learn"
+googleAnalytics = "UA-148326159-1"
+
+[params]
+
+editURL = "https://github.com/rafik8/istio-workshop/edit/master/content/"
+description = "Documentation for Istio Service Mesh Workshop"
+author = "Rafik Harabi"
+# Shows a checkmark for visited pages on the menu
+showVisitedLinks = true
+disableBreadcrumb = false
+disableNextPrev = false
+
+# Change default color scheme with a variant one. Can be "red", "blue", "green".
+themeVariant = "mine"
+
+[outputs]
+home = [ "HTML", "RSS", "JSON"]
+
+[[menu.shortcuts]]
+name = "<i class='fas fa-tags'></i> Tags"
+url = "/tags"
+weight = 30

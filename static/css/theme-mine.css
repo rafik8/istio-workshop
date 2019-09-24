@@ -1,0 +1,25 @@
+/* #chapter {
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    height: 100%;
+    padding: 2rem 0;
+} */
+
+/* #chapter p {
+    text-align: justify;
+} */
+
+pre {
+    padding: 1rem;
+    margin: 2rem 0;
+    background: #282c34;
+    border: 0;
+    border-radius: 2px;
+    line-height: 1.15;
+}
+
+#chapter p {
+    text-align: left;
+    font-size: 1.2rem;
+}
