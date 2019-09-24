@@ -2,6 +2,7 @@
 title: "Distributed is hard"
 chapter: true
 weight: 3
+draft: true
 ---
 
 Companies with large, monolithic applications are increasingly breaking these unwieldy apps into smaller, containerized microservices. Microservices are popular because they offer agility, speed, and flexibility, but they can be complex, which can be a hurdle for adoption. And having multiple microservices, rather than a single monolith, can increase the attack surface of the app.

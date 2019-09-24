@@ -14,6 +14,7 @@ weight: 1
 STATUS: <span style="color: orange">WORK IN PROGRESS</span>
 
 Welcome to the Istio Service Mesh Workshop!
+
 A labs driven workshop to explore service mesh technology and patterns using [Istio](https://istio.io) open source project.
 
 ![Istio logo](/images/istio-whitelogo-bluebackground.png?width=10pc)
