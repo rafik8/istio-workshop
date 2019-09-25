@@ -6,6 +6,10 @@ weight: 3
 
 # Istio Architecture and Building Blocks
 
+{{% notice info  %}}
+**Istio goals**: develop an open technology that provides a uniform way to connect, secure, manage and monitor a network of microservices regardless of the platform source or vendor.
+{{% /notice%}}
+
 ## Architecture
 
 Istio service mesh provides a modular architecture similar to kubernetes logically splitted into a **control plane** and a **data plane**:
@@ -22,7 +26,7 @@ The sidecars deployed within the services and acting as proxy form the service m
 
 The following diagram illustrates the basic architecture:
 
-![Service Mesh Architecture](/images/servicemesh-highlevel-architecture.png  "Service Mesh Architecture")
+![Service Mesh Architecture](/images/servicemesh-highlevel-architecture.png?width=40pc  "Service Mesh Architecture")
 
 
 ## Building blocks

@@ -4,6 +4,7 @@ chapter: true
 weight: 2
 ---
 # Install Helm
+
 [Helm](https://helm.sh/) is a package manager for Kubernetes that packages multiple Kubernetes resources into a single logical deployment unit called **Chart**.
 
 Istio provides a helm chart for its installation and we will use this option to deploy Istio.
