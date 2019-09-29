@@ -1,7 +1,8 @@
 ---
-title: "Contact"
+title: "Credits"
 chapter: true
 weight: 17
+draft: true
 ---
 # Credits
 
