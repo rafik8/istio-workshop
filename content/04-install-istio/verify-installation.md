@@ -1,11 +1,12 @@
 ---
 title: "Verify the Installation"
 chapter: true
-weight: 3
+weight: 5
 ---
 
+# Verify the Installation
 
-Check the helm chart is deployed:
+1. Check the helm chart is deployed:
 ```
 helm ls
 ```
@@ -18,7 +19,7 @@ istio-init	1       	Sat Aug 31 15:54:08 2019	DEPLOYED	istio-init-1.2.5	1.2.5    
 
 
 
-You can verify that the services have been deployed using:
+1. You can verify that the services have been deployed using:
 
 
 ```

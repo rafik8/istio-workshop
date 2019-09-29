@@ -2,6 +2,7 @@
 title: "Monitoring and Observability"
 chapter: true
 weight: 10
+draft: true
 ---
 # Monitoring and Observability
 

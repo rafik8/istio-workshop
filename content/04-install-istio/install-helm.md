@@ -1,7 +1,7 @@
 ---
 title: "Install Helm"
 chapter: true
-weight: 2
+weight: 3
 ---
 # Install Helm
 
@@ -12,15 +12,17 @@ Istio provides a helm chart for its installation and we will use this option to 
 ![Helm Logo](/images/helm-logo.png??width=250pc)
 
 {{% notice note %}}
-Istio operator will be the default and production recommended option in the future.
+Istio operator will be the default and production recommended option.
 {{% /notice%}}
 
 ## Install Helm CLI
 
-Before we can get started configuring helm we’ll need to first install the command line tools that you will interact with. To do this run the following:
+Before we start configuring helm we’ll need firstly to install the command line tool that you will interact with the server side of Helm (Tiller).
+
+1. Run the following command to install helm CLI:
 
 ```
-cd ~/releases
+cd $WORKSHOP_HOME
 
 curl https://raw.githubusercontent.com/kubernetes/helm/master/scripts/get > get_helm.sh
 
@@ -30,12 +32,12 @@ chmod +x get_helm.sh
 
 ```
 
-{{% notice info %}}
-Once you install helm, the command will prompt you to run ‘helm init’. **Do not run ‘helm init’**. Follow the instructions to configure helm using **Kubernetes RBAC** and then install tiller as specified below If you accidentally run ‘helm init’, you can safely uninstall tiller by running ‘helm reset –force’
-{{% /notice%}}
+  {{% notice info %}}
+  Once you install helm, the command will prompt you to run ‘helm init’. **Do not run ‘helm init’**. Follow the instructions to configure helm using **Kubernetes RBAC** and then install tiller as specified below If you accidentally run ‘helm init’, you can safely uninstall tiller by running ‘helm reset –force’
+  {{% /notice%}}
 
 
-check helm is installed:
+1. Check helm is installed:
 
 ```
 helm version
@@ -86,7 +88,7 @@ serviceaccount/tiller created
 clusterrolebinding.rbac.authorization.k8s.io/tiller created
 ```
 
-3. Then we can install **tiller** using the **helm** tooling
+3. Then we can install **tiller** using the **helm** CLI:
 
 ```
 helm init --service-account tiller
@@ -118,6 +120,7 @@ Server: &version.Version{SemVer:"v2.14.3", GitCommit:"0e7f3b6637f7af8fcfddb3d294
 kubectl get po -n kube-system
 
 ```
+
 ```
 NAME                                                       READY   STATUS    RESTARTS   AGE
 heapster-v1.6.1-84bdfd9b9d-72rzn                           3/3     Running   0          34h

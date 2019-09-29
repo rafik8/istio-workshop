@@ -4,8 +4,9 @@ chapter: true
 weight: 3
 ---
 
+# Verify Application deployment
 
-## Access Application:
+## Explore the application:
 
 1. Find the IP address of your application, then visit the application on your browser to confirm installation:
 

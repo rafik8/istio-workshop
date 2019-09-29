@@ -44,11 +44,14 @@ The following diagram illustrates the basic architecture:
 | **Control plane** | Istio CNI  | Network initialisation                                                  |           |            |
 | **Control plane** | Prometheus | Metrics collections                                                     |           |            |
 | **Control plane** | Core DNS   | DNS resolution in a multicluster gateways deployment                    |           |            |
+| **Control plane** | Cert Manager   | Issuance and renewal of TLS certificates                            |           |            |
 | **Dashboard**     | Grafana    | Monitoring dashboard                                                    |           |            |
 | **Dashboard**     | Jaeger     | Distributed tracing                                                     |           |            |
 | **Dashboard**     | Kiali      | Observability dashboard                                                 |           |            |
 | **Dashboard**     | Service graph  | Service dependency                                                  |           | Deprecated in favor of Kiali|
 | **Data plane**    | Envoy proxy|  Proxy injected as a sidecar                                            |           |            |
+
+
 
 
 ![Istio Building Blocks](/images/istio-components-interaction.png  "Istio Building Blocks")

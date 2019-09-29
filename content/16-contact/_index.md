@@ -11,4 +11,8 @@ Mail: rafik.harabi@innovsquare.com
 
 Twitter: https://twitter.com/rafik8_
 
+![Rafik Twitter](/images/rafik8-twitter.png?width=10pc)
+
 Linkedin: https://www.linkedin.com/in/rafikharabi/
+
+![Rafik Linkedin](/images/rafik-linkedin.png?width=10pc)

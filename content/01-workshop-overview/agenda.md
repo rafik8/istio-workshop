@@ -5,8 +5,9 @@ weight: 2
 ---
 # Agenda
 
-
 During the workshop, we will walk you through the following topics:
+
+## Part 1: Introduce service mesh
 
 - Provision a Kubernetes Cluster
 - Service Mesh Overview
@@ -14,8 +15,21 @@ During the workshop, we will walk you through the following topics:
 - Deploy sample application
 - Dashboards Tour
 - Configure DNS
-- Enable Istio for Hispter app
+
+## Part 2: Traffic Management
+
+- Enable Istio for Hipster app
 - Traffic management
+
+
+
+## Part 3: Monitoring and Security
+
 - Monitoring and Observability
 - Application security
+
+
+## Part 3: debugging and conclusion
+
 - Istio debugging
+- Conclusion and takeaways

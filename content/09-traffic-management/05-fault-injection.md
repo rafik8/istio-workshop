@@ -10,6 +10,7 @@ weight: 5
 
 Istio enables fault injection to test the resiliency of your application. With this feature, you can use application-layer fault injection instead of killing pods, delaying packets, or corrupting packets at the TCP layer.
 Istio defines two types of faults injection:
+
 **Delays**: Delays are timing failures such us network latency or overloaded upstreams.
 
 **Aborts**: Aborts are crash failures such as HTTP error codes or TCP connection failures.
@@ -18,7 +19,7 @@ Istio defines two types of faults injection:
 ## How it works
 
 
-The traffic splitting is handled by the following Istio Object:
+The Fault injection is handled by the following Istio Object:
 
 
 | Object           | API                 | Version    |
@@ -26,14 +27,16 @@ The traffic splitting is handled by the following Istio Object:
 | VirtualService   | networking.istio.io | v1alpha3   |
 
 
+TODO: add diagram here.
+
 ### Delay injection
 
-Scenario: we want test the availability of the whole application when there is a delay `Recommendation Service`. We define a VirtualService for the target service and we set `fault` of type `delay` with these two attributes of the http request.
+__Scenario__: we want to test the availability of the whole application when there is a delay `Recommendation Service`. We define a VirtualService for the target service and we set `fault` of type `delay` with these two attributes of the http request.
 
-This below rule will inject a fixed 5 seconds delay on all the requests going to `Recommendation Service`. You can modify `percent` and `fixedDelay` to change the probability and the amount of time for delay.
+The below rule will inject a fixed 5 seconds delay on all the requests going to `Recommendation Service`. You can modify `percent` and `fixedDelay` to change the probability and the amount of time for delay.
 
 - fixedDelay:
-- percent: poucentage of the requests to apply the fault deloy.
+- percent: percent of the requests to apply the fault delay.
 
 ```
 apiVersion: networking.istio.io/v1alpha3

@@ -1,7 +1,7 @@
 ---
 title: "Egress Gateway"
 chapter: true
-weight: 7
+weight: 8
 ---
 
 # Egress Gateway
@@ -82,14 +82,44 @@ env:
 ```
 
 
-6.
 
 
-7. Enable outbound traffic:
+6. to restrict traffic to external world, we will enable outbound traffic registration:
 
-8. Test Redis
+```
+helm upgrade --set global.outboundTrafficPolicymode=REGISTRY_ONLY  istio  $WORKSHOP_HOME/istio-$ISTIO_VERSION/install/kubernetes/helm/istio
+```
 
-8. Configure ServiceEntry
+
+7. Let's retest Redis connection:
+
+
+
+As you mention, The managed redis instance is not reachable:
+
+8. We will configure a  `ServiceEntry` rule to enable `cartservice` to initiate connection to redis host outside of mesh network:
+
+```
+apiVersion: networking.istio.io/v1alpha3
+kind: ServiceEntry
+metadata:
+  name: redis-serviceentry
+spec:
+  hosts:
+  - REDIS_ENDPOINT
+  ports:
+  - number: 6379
+    name: tcp-redis
+    protocol: TCP
+  location: MESH_EXTERNAL
+```
+
+
+Edit `$WORKSHOP_HOME/istio-workshop-labs/redis-serviceentry.yaml` then replace the `REDIS_ENDPOINT` with the IP address of you redis service.
+
+
+
+
 
 
 9. Test Redis

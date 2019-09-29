@@ -7,7 +7,18 @@ weight: 2
 
 ## Install Skaffold:
 
+[Skaffold](https://github.com/GoogleContainerTools/skaffold) is an Kubernetes tool promoting easy and repeatable Kubernetes development from build to deploy including change watching:
+
+![Skaffold on GKE](/images/skaffold-on-gke.png)
+
+
+Further reading: https://ahmet.im/blog/skaffold/
+
+
+1. Create a `skaffold` directory and install skaffold into as following:
+
 ```
+cd $WORKSHOP_HOME
 mkdir skaffold && cd skaffold
 curl -Lo skaffold https://storage.googleapis.com/skaffold/releases/latest/skaffold-darwin-amd64
 sudo chmod +x skaffold
@@ -16,18 +27,15 @@ export PATH="$PATH:/technical/github/istio-workshop/releases/skaffold/"
 ```
 
 
-Check that skaffold is installed:
+1. Check that skaffold is installed:
 ```
 skaffold version
 v0.37.0
 ```
- //TOOD: Add illustration schema fo skaffold
-
-
 
 
 {{% notice tip %}}
-if you are using Google Cloud console, you haven't to deploy skaffold. it is alredy coming within the VM.
+if you are using Google Cloud console, you haven't to deploy skaffold. it is already coming within the VM.
 {{% /notice%}}
 
 ## Deploy
@@ -46,19 +54,19 @@ You should a confirmation that Docker configuration file updated.
 
 ## Application namespace
 
-1. We will create
+1. Create a namespace for the application:
 ```
 kubectl create namespace hipster-app
 ```
 
-2. Switch the context to the created namespace:
+2. Set Kubernetes context to the created namespace:
 
 ```
 kubectl config set-context --current --namespace=hipster-app
 ```
 
 
-## Build image and Deploy with Skaffold
+## Build images and Deploy with Skaffold
 
 1. Clone docker repository
 ```
@@ -66,10 +74,30 @@ git clone https://github.com/GoogleCloudPlatform/microservices-demo.git
 cd microservices-demo
 ```
 
-2. In the root of this repository, run the following command:
-//run skaffold run --default-repo=gcr.io/[PROJECT_ID], where [PROJECT_ID] is your GCP project ID.
+1. In the root of this repository, run the following command:
 
 ```
+gcloud services enable cloudbuild.googleapis.com
+skaffold run -p gcb --default-repo=gcr.io/$PROJECT_ID
+```
+This command will:
+
+- builds the container images
+- pushes them to GCR
+- applies the `./kubernetes-manifests` to deploy the application to Kubernetes.
+
+
+{{% notice note %}}
+You do not need to have docker installed locally, run skaffold with `-p gcp` option. This allows building and pushing the images on Google Container Builder without requiring docker installed on the developer machine.
+{{% /notice%}}
+
+
+
+
+
+<!-- //run skaffold run --default-repo=gcr.io/[PROJECT_ID], where [PROJECT_ID] is your GCP project ID. -->
+
+<!-- ```
 cd microservices-demo/
 skaffold run --default-repo=gcr.io/$PROJECT_ID
 ```
@@ -91,13 +119,8 @@ Tags generated in 364.368285ms
 ...
 ```
 
-**Note for presenter**: this will take almost % min. you need to present the next topic meanwhile.
+<!-- **Note for presenter**: this will take almost % min. you need to present the next topic meanwhile.\
 
-This command:
-
-- builds the container images
-- pushes them to GCR
-- applies the ./kubernetes-manifests deploying the application to Kubernetes.
 
 {{% notice note %}}
 if you do not have docker installed locally, run skaffold with `-p gcp` option. This allows building and pushing the images on Google Container Builder without requiring docker installed on the developer machine.
@@ -105,8 +128,7 @@ if you do not have docker installed locally, run skaffold with `-p gcp` option. 
 gcloud services enable cloudbuild.googleapis.com
 skaffold run -p gcb --default-repo=gcr.io/$PROJECT_ID
 ```
-{{% /notice%}}
-
+{{% /notice%}} -->
 
 
 ```
@@ -144,7 +166,7 @@ Deploy complete in 10.084532421s
 You can also run [skaffold run --tail] to get the logs
 ```
 
-Check that all pods are deployed:
+1. Check that all pods are deployed:
 
 ```
 kubectl get po,svc
@@ -181,7 +203,6 @@ service/shippingservice         ClusterIP      10.19.244.205   <none>           
 
 ```
 
-
-{{% notice note %}}
+{{% notice info %}}
 if you get an error during the build, please re-run the command.
 {{% /notice%}}

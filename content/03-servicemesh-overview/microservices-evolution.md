@@ -31,6 +31,9 @@ Adoting microservices oriented architecture bring new challenges:
 ![Microservices evolution](/images/microservices-building-blocks.png)
 
 
+
+The only value visible from business stackhelder is the business service so we have a develop a bench of microservices concerns to deliver a business value.
+
 ![Microservices evolution](/images/microservices-iceberg.png)
 
 

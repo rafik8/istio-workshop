@@ -18,25 +18,24 @@ kubectl -n istio-system port-forward $(kubectl -n istio-system get pod \
 istioctl dashboard grafana
 ```
 
-2. In Cloud Shell, click **Web Preview icon → Change port**:
+1. In Cloud Shell, click **Web Preview icon → Change port**:
 
 ![Dashboard change port](/images/dashboard-change-port.png?width=25pc)
 
-3. Enter port 3000, and click **Change and Preview**:
+1. Enter port 3000, and click **Change and Preview**:
 
 ![Dashboard change port](/images/dashboard-change-port-1.png?width=25pc)
 
 This will establish a connection from you local machine to your Cloud Shell machine on port 3000, which is connected to a Grafana pod inside of your Kubernetes cluster.
 
 
-4. In the Grafana Dashboard, click **Home → Istio**:
+1. In the Grafana Dashboard, click **Home → Istio**:
+
+Istio comes with 6 default dashboards, you can add you owns or customise the existing ones:
 
 ![Istio default dashboard](/images/istio-default-dashboard.png?width=50pc)
 
-Istio comes with 6 dashboards, you can add you owns or customize the existing ones:
-
-
-4. Click **Home → Istio Performance Dashboard**:
+1. Click **Home → Istio Performance Dashboard**:
 
 ![Dashboard change port](/images/grafana-istio-dashboards.png?width=50pc)
 

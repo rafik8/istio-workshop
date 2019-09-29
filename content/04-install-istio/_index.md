@@ -5,6 +5,6 @@ weight: 4
 ---
 # Install Istio
 
-In this section we will install on the Kubernetes Cluster already provisioned.
+In this section we will install Istio on the Kubernetes cluster already provisioned.
 
 {{% children showhidden="false" %}}
