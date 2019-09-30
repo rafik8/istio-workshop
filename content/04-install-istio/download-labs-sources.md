@@ -11,4 +11,6 @@ weight: 2
 cd $WORKSHOP_HOME
 
 git clone https://github.com/rafik8/istio-workshop-labs.git
+
+chmod +x $WORKSHOP_HOME/istio-workshop-labs/*.sh
 ```

@@ -2,6 +2,7 @@
 title: "Create DNS Account"
 chapter: true
 weight: 1
+draft: true
 ---
 
 # Create DNS Account

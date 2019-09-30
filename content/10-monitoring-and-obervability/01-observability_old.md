@@ -1,10 +1,10 @@
 ---
-title: "Monitoring and Observability"
+title: "Observability"
 chapter: true
-weight: 10
+weight: 1
 draft: true
 ---
-# Monitoring and Observability
+# Observability with Kiala
 
 Bug:
 

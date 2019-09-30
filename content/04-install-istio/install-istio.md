@@ -57,16 +57,16 @@ As we will install Istio using helm, first create a service account for Tiller:
 
 ### Istio namespace
 
-Create a namespace for the istio-system components:
+<!-- Create a namespace for the istio-system components:
 
 ```
 kubectl create namespace istio-system
-```
+``` -->
 
 ### Install Istio CRDs
 The [Custom Resource Definitions, also known as CRDs](https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources/#customresourcedefinitions) are API resources which allow you to define custom resources.
 ```
-helm install install/kubernetes/helm/istio-init --name istio-init --namespace istio-system
+helm install $WORKSHOP_HOME/istio-$ISTIO_VERSION/install/kubernetes/helm/istio-init --name istio-init --namespace istio-system
 ```
 
 You can check the installation by running:
@@ -74,7 +74,7 @@ You can check the installation by running:
 ```
 kubectl get crds | grep 'istio.io\|certmanager.k8s.io' | wc -l
 ```
-This should return  23 CRDs as of Istio 1.3.0.
+This should return  23 CRDs as of Istio 1.3.1.
 
 {{% notice note %}}
 If **cert-manager** is enabled, then the CRD count will be 28 instead.
@@ -96,7 +96,9 @@ istio-init	1       	Sat Aug 31 15:44:51 2019	DEPLOYED	istio-init-1.3.0	1.3.0    
 As discussed in the building blocks chapter, (Istio CNI)[https://github.com/istio/cni] is responsible for setting up Kubernetes pod namespaces to redirect traffic to sidecar proxy.
 
 ```
-helm install install/kubernetes/helm/istio-cni --name istio-cni --namespace kube-system -f install/kubernetes/helm/istio-cni/values_gke.yaml
+helm install $WORKSHOP_HOME/istio-$ISTIO_VERSION/install/kubernetes/helm/istio-cni \
+ --name istio-cni --namespace kube-system \
+ -f $WORKSHOP_HOME/istio-$ISTIO_VERSION/install/kubernetes/helm/istio-cni/values_gke.yaml
 ```
 
 ```
@@ -138,14 +140,16 @@ The last step installs Istio's core components:
 
 **Option 1**: setting command line parameters
 ```
-helm install install/kubernetes/helm/istio --name istio --namespace istio-system --set tracing.enabled=true  --set grafana.enabled=true --set kiali.enabled=true --set istio_cni.enabled=true
+helm install $WORKSHOP_HOME/istio-$ISTIO_VERSION/install/kubernetes/helm/istio \
+ --name istio --namespace istio-system --set tracing.enabled=true \
+ --set grafana.enabled=true --set kiali.enabled=true --set istio_cni.enabled=true
 ```
 
 or
 
 **Option 2**: Using value file
 ```
-helm install install/kubernetes/helm/istio --name istio --namespace istio-system  -f $WORKSHOP_HOME/istio-workshop-labs/istio-srecon-values.yaml
+helm install $WORKSHOP_HOME/istio-$ISTIO_VERSION/install/kubernetes/helm/istio --name istio --namespace istio-system  -f $WORKSHOP_HOME/istio-workshop-labs/istio-srecon-values.yaml
 ```
 
 - `istio_cni.enabled=true`: we are enabling istio cni to handle iptables configuration instead of Istio init.

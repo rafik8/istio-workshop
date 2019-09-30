@@ -6,7 +6,7 @@ weight: 5
 
 ## Introducing the demo application
 
-For the purpose of this workshop we will use the  great web-based e-commerce demo application **Hipster Shop** from _Google Cloud Platform_ team.
+For the purpose of this workshop we will use the  awesome web-based e-commerce demo application **Hipster Shop** from _Google Cloud Platform_ team.
 
 
 **Sources**: [https://github.com/GoogleCloudPlatform/microservices-demo](https://github.com/GoogleCloudPlatform/microservices-demo)

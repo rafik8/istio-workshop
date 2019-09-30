@@ -1,5 +1,5 @@
 ---
-title: "Configure Google DNS"
+title: "Configure DNS entry"
 chapter: true
 weight: 3
 ---
@@ -19,16 +19,16 @@ In this section we will configure Cloud DNS to assign the domain to the Kubernet
 3. Create the zone with:
 
 - Set **Zone type** to _public_
-- **DNS name**: enter the dns name created from cloudns
-- **Zone name**: use the training account as a name or select a random name (for example: trainee001-srecon19)
+- **DNS name**: enter the dns name. for the purpose of the workshop we will the Domain `innovlabs.io`
+- **Zone name**: use the training account as a name or select you cluster name (for example: `trainee001-srecon19`)
 - Set **DNSSEC** to _ON_
 the click on **Create**
 
-![GCP Cloud DNS create zone](/images/gcp-cloud-dns-create-zone-1.png?width=50pc)
+![GCP Cloud DNS create zone](/images/gcp-cloud-dns-create-zone-2.png?width=50pc)
 
 4. The created DNS zone details should be displayed:
 
-![GCP Cloud DNS created](/images/gcp-cloud-dns-created.png?width=50pc)
+![GCP Cloud DNS created](/images/gcp-cloud-dns-created-1.png?width=50pc)
 
 5. We will add a record set for the hispter e-commerce app, click on **Add record set**:
 

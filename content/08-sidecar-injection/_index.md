@@ -10,18 +10,21 @@ We have seen in the previous chapter that we deployed the hipster commerce appli
 Now, we will enable the service mesh for the application.
 Istio suggests 3 methods enables service mesh:
 
-**Namespace wide**: we enable Istio the the specified namespace buy annotating the namespace. This is result to every pod deployed to the namespace get a side car injected by Istio `sidecar-injector`.
+**Automatic sidecar injection**: Automatic sidecar injection via a Mutating Admission Webhook. when a namespace is labelled `istio-injection=enabled`, every pod deployed to the namespace get a side car injected by `sidecar-injector` pod.
 
 **Manual sidecar injection**:
+Manual sidecar injection will add a sidecar to the deployment:
+```
+istioctl kube-inject -f deployment.yaml
+```
+**Single pod injection** (Experimental):
+This is really useful when we want to enable mesh for only a specific service and start testing its compatibility with Istio.
 
 ```
-istioctl kube-inject -f filename
+istioctl experimental add-to-mesh service [flags]
 ```
-**Single pod injection** (Istio 1.3):
-This is really useful when you want to enable mesh for only for a specific service and start testing.
 
-
-In our workshop, we will use the namespace wide method.
+In our workshop, we will use the namespace label method.
 
 
 {{% children showhidden="false" %}}

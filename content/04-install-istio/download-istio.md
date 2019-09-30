@@ -8,15 +8,16 @@ weight: 1
 1. We will create working directory for the workshop that we will refer it by environment variable: `WORKSHOP_HOME`.
 
 ```
-mkdir istio-workshop && cd istio-workshop
-
-export WORKSHOP_HOME=/path-to/istio-workshop
+mkdir ~/istio-workshop && cd ~/istio-workshop
+```
+```
+export WORKSHOP_HOME=~/istio-workshop
 ```
 
 1. Set Istio version in an environment variable (we will use the latest stable version):
 
 ```
-export ISTIO_VERSION=1.3.0
+export ISTIO_VERSION=1.3.1
 ```
 
 1. Download Istio:
@@ -29,7 +30,7 @@ curl -L https://git.io/getLatestIstio | sh -
 1. add `istioctl` to your path:
 
 ```
-export PATH="$PATH:$WORKSHOP_HOME/istio-1.3.0/bin"
+export PATH="$PATH:$WORKSHOP_HOME/istio-$ISTIO_VERSION/bin"
 ```
 
 1. Check `istioctl` version:
@@ -39,7 +40,7 @@ istioctl version --remote=false
 ```
 
 ```
-1.3.0
+1.3.1
 ```
 
 ## Anatomy of an Istio package:

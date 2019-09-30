@@ -1,7 +1,8 @@
 ---
-title: "Provision DNS name"
+title: "Add Cloud DNS zone"
 chapter: true
 weight: 2
+draft: true
 ---
 
 # Provision DNS name

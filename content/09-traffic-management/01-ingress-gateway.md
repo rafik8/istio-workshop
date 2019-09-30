@@ -145,20 +145,20 @@ gateway.networking.istio.io/app-gateway   5h
 
 let assumes that we want to expose Istio dashbaord using Ingress Gateway as following:
 
-- dashboard.trainee001-srecon19.innovlabs.io/grafana → Grafana
+- grafana.trainee001-srecon19.innovlabs.io → Grafana
 
-- dashboard.trainee001-srecon19.innovlabs.io/prometheus → Prometheus
+- prometheus.trainee001-srecon19.innovlabs.io → Prometheus
 
-- dashboard.trainee001-srecon19.innovlabs.io/kiali → Kiali
+- kiali.trainee001-srecon19.innovlabs.io → Kiali
 
-- dashboard.trainee001-srecon19.innovlabs.io/tracing → Jaeger Tracing
+- tracing.trainee001-srecon19.innovlabs.io → Jaeger Tracing
 
 
 Create a YAML file that create an ingress resource for one of these Addons and deploy it to the mesh.
 
-{{% notice tip %}}
+<!-- {{% notice tip %}}
 Don't forget the prefix ;)
-{{% /notice%}}
+{{% /notice%}} -->
 
 **Solution**:
 

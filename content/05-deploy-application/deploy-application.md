@@ -21,16 +21,19 @@ Further reading: https://ahmet.im/blog/skaffold/
 cd $WORKSHOP_HOME
 mkdir skaffold && cd skaffold
 curl -Lo skaffold https://storage.googleapis.com/skaffold/releases/latest/skaffold-darwin-amd64
-sudo chmod +x skaffold
+chmod +x skaffold
 cd ..
-export PATH="$PATH:/technical/github/istio-workshop/releases/skaffold/"
+export PATH="$PATH:$WORKSHOP_HOME/skaffold"
 ```
 
 
 1. Check that skaffold is installed:
 ```
 skaffold version
-v0.37.0
+```
+
+```
+v0.39.0
 ```
 
 
@@ -49,6 +52,11 @@ gcloud services enable containerregistry.googleapis.com
 ```
 gcloud auth configure-docker -q
 ```
+
+```shell
+gcloud credential helpers already registered correctly.
+```
+
 You should a confirmation that Docker configuration file updated.
 
 
@@ -68,16 +76,27 @@ kubectl config set-context --current --namespace=hipster-app
 
 ## Build images and Deploy with Skaffold
 
-1. Clone docker repository
+1. Clone microservices-demo repository:
+
 ```
+cd $WORKSHOP_HOME
 git clone https://github.com/GoogleCloudPlatform/microservices-demo.git
 cd microservices-demo
+```
+
+1. Enable cloudbuild service:
+
+```
+gcloud services enable cloudbuild.googleapis.com
+```
+
+```shell
+Operation "operations/acf.39ed7f82-71f0-4770-9c52-403e25bf8f0d" finished successfully.
 ```
 
 1. In the root of this repository, run the following command:
 
 ```
-gcloud services enable cloudbuild.googleapis.com
 skaffold run -p gcb --default-repo=gcr.io/$PROJECT_ID
 ```
 This command will:

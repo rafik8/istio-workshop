@@ -41,6 +41,9 @@ chmod +x get_helm.sh
 
 ```
 helm version
+```
+
+```
 Client: &version.Version{SemVer:"v2.14.3", GitCommit:"0e7f3b6637f7af8fcfddb3d2941fcc7cbebb0085", GitTreeState:"clean"}
 Error: could not find tiller
 ```
@@ -51,7 +54,7 @@ Helm relies on a service called **tiller** that requires special permission on t
 kubernetes cluster, so we need to build a _**Service Account**_ for **tiller**
 to use. We'll then apply this to the cluster.
 
-1. To create a new service account manifest:
+1. Create a new service account manifest:
 
 ```
 cat <<EoF > rbac.yaml
@@ -77,7 +80,7 @@ subjects:
 EoF
 ```
 
-2. Next apply the config:
+2. Next apply the configuration:
 
 ```
 kubectl apply -f rbac.yaml

@@ -115,11 +115,46 @@ spec:
 ```
 
 
-Edit `$WORKSHOP_HOME/istio-workshop-labs/redis-serviceentry.yaml` then replace the `REDIS_ENDPOINT` with the IP address of you redis service.
+Edit `$WORKSHOP_HOME/istio-workshop-labs/redis-serviceentry.yaml` then replace the `REDIS_ENDPOINT` with the IP address of you Redis managed instance the run the apply the configuration:
+
+```
+kubectl apply -f $WORKSHOP_HOME/istio-workshop-labs/redis-serviceentry.yaml
+```
 
 
 
+9. We will also create an ingress gateway and configure the service entry to flow traffic using
 
+```
+apiVersion: networking.istio.io/v1alpha3
+kind: Gateway
+metadata:
+  name: istio-egressgateway
+spec:
+  selector:
+    istio: egressgateway
+  servers:
+  - port:
+      number: 6379
+      name: tcp-redis
+      protocol: TCP
+    hosts:
+    - REDIS_ENDPOINT
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: DestinationRule
+metadata:
+  name: redis-egressgateway
+spec:
+  host: istio-egressgateway.istio-system.svc.cluster.local
+  subsets:
+  - name: redis-serviceentry
+```
 
+Edit `$WORKSHOP_HOME/istio-workshop-labs/redis-egress.yaml` then replace the `REDIS_ENDPOINT` with the IP address of you Redis managed instance the run the apply the configuration:
 
-9. Test Redis
+```
+kubectl apply -f $WORKSHOP_HOME/istio-workshop-labs/redis-egress.yaml
+```
+
+10. Test Redis:

@@ -29,7 +29,7 @@ During the workshop, we will walk you through the following topics:
 - Application security
 
 
-## Part 3: debugging and conclusion
+## Part 4: debugging and conclusion
 
 - Istio debugging
 - Conclusion and takeaways

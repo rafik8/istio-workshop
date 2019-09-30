@@ -12,7 +12,7 @@ weight: 1
 kubectl label namespace hipster-app istio-injection=enabled
 ```
 
-2. We need to redeploy the hispter application so new pods will be created with the sidecar.
+2. We need to redeploy the hipster application. Let's delete the application and redeploy it so pods will be created with the sidecar.
 
 ```
 skaffold delete
@@ -23,6 +23,21 @@ Deploy the application:
 ```
 skaffold run --default-repo=gcr.io/$PROJECT_ID
 ```
+
+```
+$WORKSHOP_HOME/istio-workshop-labs/deploy-hipster-app.sh
+```
+
+```
+kubectl apply -f <(istioctl kube-inject -f $WORKSHOP_HOME/istio-workshop-labs/hispter-app.yaml)
+```
+
+
+```
+kubectl apply -f $WORKSHOP_HOME/istio-workshop-labs/loadgenerator.yaml
+```
+
+
 
 3. Check that all services and pods are correctly deployed and running:
 

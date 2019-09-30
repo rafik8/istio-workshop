@@ -13,10 +13,15 @@ gcloud services enable container.googleapis.com
 gcloud services enable dns.googleapis.com
 ```
 
+```
+Operation "operations/acf.956976dc-da5c-470a-990d-2b5b7cc756b6" finished successfully.
+Operation "operations/acf.5df4b793-2d9d-4bd0-b66e-66481b12b9b8" finished successfully.
+```
+
 1. Get the last GKE Kubernetes version:  
 
 ```
-export K8S_VERSION=$(gcloud container get-server-config --zone=europe-west1-c --format=json | jq -r '.validMasterVersions[0]')
+export K8S_VERSION=$(gcloud container get-server-config --zone=europe-west1-b --format=json | jq -r '.validMasterVersions[0]')
 ```
 
 1. Create a cluster with 3 nodes using the latest Kubernetes version:
@@ -25,7 +30,7 @@ export K8S_VERSION=$(gcloud container get-server-config --zone=europe-west1-c --
 gcloud container clusters create istio-workshop \
 --cluster-version=${K8S_VERSION} \
 --zone=${ZONE_ID} \
---num-nodes=3 \
+--num-nodes=4 \
 --machine-type=n1-highcpu-4 \
 --preemptible \
 --no-enable-cloud-logging \
