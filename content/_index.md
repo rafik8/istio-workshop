@@ -11,7 +11,7 @@ weight: 1
 <!-- In this workshop, we will explore What a service mesh and run a set of labs using Istio. -->
 
 
-STATUS: <span style="color: orange">WORK IN PROGRESS</span>
+<!-- STATUS: <span style="color: orange">WORK IN PROGRESS</span> -->
 
 Welcome to the Istio Service Mesh Workshop!
 
