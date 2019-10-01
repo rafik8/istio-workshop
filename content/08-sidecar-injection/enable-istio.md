@@ -88,10 +88,10 @@ kubectl get service frontend-external
 ```
 
 
-We need also to update the application DNS entry with the new DNS entry:
+<!-- We need also to update the application DNS entry with the new DNS entry:
 
-![Cloud DNS update service record](/images/gcp-cloud-dns-record-updated.png?width=40pc)
+![Cloud DNS update service record](/images/gcp-cloud-dns-record-updated.png?width=40pc) -->
 
 
 
-By enabling Istio for the application, I was able to observe the microservices at the app layer with Grafana, Jaeger, or Kiali, without needing to modify the service code or rebuild the container images.
+By enabling Istio for the application, we are now able to have application monitoring and observability with Grafana, Jaeger and Kiali without the need to modify the service code or rebuild the container images.
