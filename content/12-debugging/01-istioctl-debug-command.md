@@ -11,5 +11,9 @@ weight: 12
 istioctl x describe pod frontend-69577cb555-9th62
 ```
 
+```
+istioctl authn tls-check
+```
+
 
 {{% children showhidden="false" %}}

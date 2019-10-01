@@ -24,7 +24,7 @@ This is really useful when we want to enable mesh for only a specific service an
 istioctl experimental add-to-mesh service [flags]
 ```
 
-In our workshop, we will use the namespace label method.
+In this workshop, we will use the **manual sidecar injection** method.
 
 
 {{% children showhidden="false" %}}

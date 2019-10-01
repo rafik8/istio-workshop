@@ -4,60 +4,7 @@ chapter: true
 weight: 2
 ---
 
-
-## Install Skaffold:
-
-[Skaffold](https://github.com/GoogleContainerTools/skaffold) is an Kubernetes tool promoting easy and repeatable Kubernetes development from build to deploy including change watching:
-
-![Skaffold on GKE](/images/skaffold-on-gke.png)
-
-
-Further reading: https://ahmet.im/blog/skaffold/
-
-
-1. Create a `skaffold` directory and install skaffold into as following:
-
-```
-cd $WORKSHOP_HOME
-mkdir skaffold && cd skaffold
-curl -Lo skaffold https://storage.googleapis.com/skaffold/releases/latest/skaffold-darwin-amd64
-chmod +x skaffold
-cd ..
-export PATH="$PATH:$WORKSHOP_HOME/skaffold"
-```
-
-
-1. Check that skaffold is installed:
-```
-skaffold version
-```
-
-```
-v0.39.0
-```
-
-
-{{% notice tip %}}
-if you are using Google Cloud console, you haven't to deploy skaffold. it is already coming within the VM.
-{{% /notice%}}
-
-## Deploy
-
-1. Enable Google Container Registry (GCR) on your GCP project and configure the docker CLI to authenticate to GCR:
-
-```
-gcloud services enable containerregistry.googleapis.com
-```
-
-```
-gcloud auth configure-docker -q
-```
-
-```shell
-gcloud credential helpers already registered correctly.
-```
-
-You should a confirmation that Docker configuration file updated.
+# Deploy Hipster Application
 
 
 ## Application namespace
@@ -74,116 +21,30 @@ kubectl config set-context --current --namespace=hipster-app
 ```
 
 
-## Build images and Deploy with Skaffold
+##  Deploy the application:
 
-1. Clone microservices-demo repository:
-
-```
-cd $WORKSHOP_HOME
-git clone https://github.com/GoogleCloudPlatform/microservices-demo.git
-cd microservices-demo
-```
-
-1. Enable cloudbuild service:
+1. Deploy hipster application:
 
 ```
-gcloud services enable cloudbuild.googleapis.com
+kubectl apply -f $WORKSHOP_HOME/istio-workshop-labs/hispter-app.yaml
 ```
 
-```shell
-Operation "operations/acf.39ed7f82-71f0-4770-9c52-403e25bf8f0d" finished successfully.
-```
-
-1. In the root of this repository, run the following command:
+1. Deploy the LoadBalancer:
 
 ```
-skaffold run -p gcb --default-repo=gcr.io/$PROJECT_ID
+kubectl apply -f $WORKSHOP_HOME/istio-workshop-labs/frontend-external-service.yaml
 ```
-This command will:
 
-- builds the container images
-- pushes them to GCR
-- applies the `./kubernetes-manifests` to deploy the application to Kubernetes.
+1. Deploy `loadgenerator` service:
 
+```
+kubectl apply -f $WORKSHOP_HOME/istio-workshop-labs/loadgenerator.yaml
+```
 
-{{% notice note %}}
-You do not need to have docker installed locally, run skaffold with `-p gcp` option. This allows building and pushing the images on Google Container Builder without requiring docker installed on the developer machine.
+{{% notice info %}}
+The load generator application will simulate end user traffic.
 {{% /notice%}}
 
-
-
-
-
-<!-- //run skaffold run --default-repo=gcr.io/[PROJECT_ID], where [PROJECT_ID] is your GCP project ID. -->
-
-<!-- ```
-cd microservices-demo/
-skaffold run --default-repo=gcr.io/$PROJECT_ID
-```
-
-```
-Generating tags...
- - gcr.io/srecon19-workshop-250603/emailservice -> gcr.io/srecon19-workshop-250603/emailservice:v0.1.2
- - gcr.io/srecon19-workshop-250603/productcatalogservice -> gcr.io/srecon19-workshop-250603/productcatalogservice:v0.1.2
- - gcr.io/srecon19-workshop-250603/recommendationservice -> gcr.io/srecon19-workshop-250603/recommendationservice:v0.1.2
- - gcr.io/srecon19-workshop-250603/shippingservice -> gcr.io/srecon19-workshop-250603/shippingservice:v0.1.2
- - gcr.io/srecon19-workshop-250603/checkoutservice -> gcr.io/srecon19-workshop-250603/checkoutservice:v0.1.2
- - gcr.io/srecon19-workshop-250603/paymentservice -> gcr.io/srecon19-workshop-250603/paymentservice:v0.1.2
- - gcr.io/srecon19-workshop-250603/currencyservice -> gcr.io/srecon19-workshop-250603/currencyservice:v0.1.2
- - gcr.io/srecon19-workshop-250603/cartservice -> gcr.io/srecon19-workshop-250603/cartservice:v0.1.2
- - gcr.io/srecon19-workshop-250603/frontend -> gcr.io/srecon19-workshop-250603/frontend:v0.1.2
- - gcr.io/srecon19-workshop-250603/loadgenerator -> gcr.io/srecon19-workshop-250603/loadgenerator:v0.1.2
- - gcr.io/srecon19-workshop-250603/adservice -> gcr.io/srecon19-workshop-250603/adservice:v0.1.2
-Tags generated in 364.368285ms
-...
-```
-
-<!-- **Note for presenter**: this will take almost % min. you need to present the next topic meanwhile.\
-
-
-{{% notice note %}}
-if you do not have docker installed locally, run skaffold with `-p gcp` option. This allows building and pushing the images on Google Container Builder without requiring docker installed on the developer machine.
-```
-gcloud services enable cloudbuild.googleapis.com
-skaffold run -p gcb --default-repo=gcr.io/$PROJECT_ID
-```
-{{% /notice%}} -->
-
-
-```
-DONE
-Build complete in 4m42.50637363s
-Starting test...
-Test complete in 3.521µs
-Starting deploy...
-kubectl client version: 1.13
-deployment.apps/adservice created
-service/adservice created
-deployment.apps/cartservice created
-service/cartservice created
-deployment.apps/checkoutservice created
-service/checkoutservice created
-deployment.apps/currencyservice created
-service/currencyservice created
-deployment.apps/emailservice created
-service/emailservice created
-deployment.apps/frontend created
-service/frontend created
-service/frontend-external created
-deployment.apps/loadgenerator created
-deployment.apps/paymentservice created
-service/paymentservice created
-deployment.apps/productcatalogservice created
-service/productcatalogservice created
-deployment.apps/recommendationservice created
-service/recommendationservice created
-deployment.apps/redis-cart created
-service/redis-cart created
-deployment.apps/shippingservice created
-service/shippingservice created
-Deploy complete in 10.084532421s
-You can also run [skaffold run --tail] to get the logs
-```
 
 1. Check that all pods are deployed:
 
@@ -221,7 +82,3 @@ service/redis-cart              ClusterIP      10.19.241.10    <none>           
 service/shippingservice         ClusterIP      10.19.244.205   <none>            50051/TCP      45h
 
 ```
-
-{{% notice info %}}
-if you get an error during the build, please re-run the command.
-{{% /notice%}}

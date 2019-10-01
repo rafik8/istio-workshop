@@ -28,7 +28,7 @@ The traffic splitting is handled by two Istio Object:
 ## Traffic Splitting in practice
 
 
-First we need to create to create a new version of the frontend service:
+<!-- First we need to create to create a new version of the frontend service:
 
 1. create a copy of `frontend.yaml` under `$WORKSHOP_DIR/microservices-demo/kubernetes-manifests/` and name it `frontend-0.1.3.yaml`.
 
@@ -42,8 +42,6 @@ First we need to create to create a new version of the frontend service:
 ...
 ```
 
-
-
 Change docker images with the full path of GCP:
 
 4. Tag the version:
@@ -56,11 +54,14 @@ Change docker images with the full path of GCP:
 skaffold run -p gcb --default-repo=gcr.io/$PROJECT_ID
 ```
 it will take around 3 minutes.
-Meanwhile let's explore manifests:
+Meanwhile let's explore manifests: -->
 
 
 5. Deploy  the manifests:
 
+```
+kubectl apply -f <(istioctl kube-inject -f $WORKSHOP_HOME/istio-workshop-labs/frontend-0.1.3.yaml)
+```
 
 6. Apply DestinationRule:
 
