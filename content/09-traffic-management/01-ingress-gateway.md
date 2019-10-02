@@ -21,9 +21,9 @@ Unlike [Kubernetes Ingress Resources](https://kubernetes.io/docs/concepts/servic
 
 ## How it works
 
-The Ingress Resource is is handled by two Istio Object:
+The Ingress Resource is is handled by two Istio Resources:
 
-| Object           | API                 | Version    |
+| Resource         | API                 | Version    |
 | -----------------| --------------------|----------- |
 | Gateway          | networking.istio.io | v1alpha3   |
 | VirtualService   | networking.istio.io | v1alpha3   |
@@ -31,7 +31,7 @@ The Ingress Resource is is handled by two Istio Object:
 
 **Gateway**: The [Gateway](https://istio.io/docs/reference/config/networking/v1alpha3/gateway/) resource is used to configure hosts exposed by the Gateway.
 
-Valid ports are:**HTTP|HTTPS|GRPC|HTTP2|MONGO|TCP|TLS**. More info about Gateways can be found in the [Istio Gateway docs](https://istio.io/docs/reference/config/networking/v1alpha3/gateway/).
+Valid protocols are:**HTTP|HTTPS|GRPC|HTTP2|MONGO|TCP|TLS**. More info about Gateways can be found in the [Istio Gateway docs](https://istio.io/docs/reference/config/networking/v1alpha3/gateway/).
 
 **Virtual Service**:
 [VirtualService](https://istio.io/docs/reference/config/networking/v1alpha3/virtual-service/) works in tandem with the Gateway. it defines the destination service.
@@ -61,7 +61,7 @@ echo $APP_LOADBALNACER
 kubectl delete service frontend-external
 ```
 
-1. Disable the LoadBalancer service by editing `$WORKSHOP_HOME/microservices-demo/kubernetes-manifests/frontend.yaml` and comment the service declaration so service will not be created when re-deploying the application:
+<!-- 1. Disable the LoadBalancer service by editing `$WORKSHOP_HOME/microservices-demo/kubernetes-manifests/frontend.yaml` and comment the service declaration so service will not be created when re-deploying the application:
 
 ```
 # ---
@@ -77,10 +77,10 @@ kubectl delete service frontend-external
 #   - name: http
 #     port: 80
 #     targetPort: 8080
-```
+``` -->
 
 
-1. Firstly, we need to find the Istio Ingress IP address:
+1. First, we need to find the Istio Ingress IP address:
 
 ```
 export INGRESS_IP=$(kubectl get service istio-ingressgateway -o jsonpath='{.status.loadBalancer.ingress[0].ip}' -n istio-system)
@@ -100,7 +100,7 @@ curl: (7) Failed to connect to 35.187.106.238 port 80: Connection refused
 
 The connection is refused because no service is running behind the ingress gateway.
 
-Let's create a Gateway to the Hipster application so application will be exposed to the external world through the Mesh Ingress Gateway but before that let's configure Cloud DNS to associate our domain name to the Ingress Gateway:
+Let's create a Gateway to the Hipster application so the application will be exposed to the external world through the Mesh Ingress Gateway but before that let's configure Cloud DNS to associate our domain name to the Ingress Gateway:
 
 
 1. On Google Cloud dashboard menu, select **Network services → Cloud DNS** then edit the zone created previously:
@@ -115,11 +115,11 @@ Update the IPv4 Address with the value of `$INGRESS_IP` then click **save**.
 
 
 {{% notice info %}}
-Please change the host name in `$WORKSHOP_HOME/istio-workshop-samples/hipster-gateway.yaml` with your own before running the command.
+Please change the host name in `$WORKSHOP_HOME/istio-workshop-labs/frontend-ingress.yaml` with your own before running the command.
 {{% /notice%}}
 
 ```
-kubectl apply -f $WORKSHOP_HOME/istio-workshop-samples/hipster-ingress.yaml
+kubectl apply -f $WORKSHOP_HOME/istio-workshop-labs/frontend-ingress.yaml
 ```
 
 1. Check that the gateway and and the virtual service are created:
@@ -145,24 +145,17 @@ gateway.networking.istio.io/app-gateway   5h
 
 let assumes that we want to expose Istio dashbaord using Ingress Gateway as following:
 
-- grafana.trainee001-srecon19.innovlabs.io → Grafana
+<!-- - grafana.**your-domain**-srecon19.innovlabs.io → Grafana
 
-- prometheus.trainee001-srecon19.innovlabs.io → Prometheus
+- prometheus.**your-domain**-srecon19.innovlabs.io → Prometheus -->
 
-- kiali.trainee001-srecon19.innovlabs.io → Kiali
+- dashboard.**your-domain**-srecon19.innovlabs.io/kiali → Kiali
 
-- tracing.trainee001-srecon19.innovlabs.io → Jaeger Tracing
+- tracing.**your-domain**-srecon19.innovlabs.io → Jaeger Tracing
 
 
 Create a YAML file that create an ingress resource for one of these Addons and deploy it to the mesh.
 
-<!-- {{% notice tip %}}
+{{% notice tip %}}
 Don't forget the prefix ;)
-{{% /notice%}} -->
-
-**Solution**:
-
-```
-kubectl apply -f $WORKSHOP_HOME/istio-workshop-samples/addons-ingress.yaml -n istio-system
-
-```
+{{% /notice%}}

@@ -5,7 +5,7 @@ weight: 2
 ---
 # Agenda
 
-During the workshop, we will walk you through the following topics:
+During the workshop, we will walk through the following topics:
 
 ## Part 1: Introduce service mesh
 
@@ -18,7 +18,7 @@ During the workshop, we will walk you through the following topics:
 
 ## Part 2: Traffic Management
 
-- Enable Istio for Hipster app
+- Enable sidecars for Hipster app
 - Traffic management
 
 
@@ -31,5 +31,5 @@ During the workshop, we will walk you through the following topics:
 
 ## Part 4: debugging and conclusion
 
-- Istio debugging
+- Istio debugging tools
 - Conclusion and takeaways

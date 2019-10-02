@@ -5,7 +5,10 @@ weight: 16
 ---
 # Contact
 
-If you want to reach me to invite me speak on your conferences and local events you could reach me:
+<!-- If you want to reach me to invite me speak on your conferences and local events you could reach me: -->
+
+
+You could reach me:
 
 Mail: rafik.harabi@innovsquare.com
 

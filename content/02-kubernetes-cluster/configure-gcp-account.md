@@ -15,6 +15,8 @@ weight: 2
 export PROJECT_ID=srecon19-workshop-250603
 ```
 
+![GCP project ID](/images/gcloud-project-id.png?width=40pc  "GCP project ID")
+
 ```
 gcloud config set project $PROJECT_ID
 ```
