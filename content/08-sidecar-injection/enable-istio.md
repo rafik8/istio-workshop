@@ -31,7 +31,7 @@ $WORKSHOP_HOME/istio-workshop-labs/deploy-hipster-app.sh
 2. Inject sidecar envoy proxies using the following command:
 
 ```
-kubectl apply -f <(istioctl kube-inject -f $WORKSHOP_HOME/istio-workshop-labs/hispter-app.yaml)
+kubectl apply -f <(istioctl kube-inject -f $WORKSHOP_HOME/istio-workshop-labs/hipster-app.yaml)
 ```
 
 

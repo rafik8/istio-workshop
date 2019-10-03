@@ -6,16 +6,15 @@ draft: true
 ---
 # Service Authorization using RBAC
 
-
 ## Introduction
 
-
+In large system, we need to isolate services and their interaction to avoid security issues and make sure that the flow is similar to what been designed.
 ## How it works
 
+![Istio RBAC Authorization](/images/istio-rbac-auth.png)
 
 
-## mTLS in practice
-
+## RBAC authorization in practice
 
 
 

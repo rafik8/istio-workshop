@@ -36,7 +36,7 @@ gcloud services enable redis.googleapis.com
 2. create a redis instance:
 
 ```
-gcloud redis instances create redis-cart --size=3 --region=$REGION_ID \
+gcloud redis instances create redis-cart --size=1 --region=$REGION_ID \
     --zone=$ZONE_ID --redis-version=redis_4_0
 ```
 
@@ -55,25 +55,42 @@ Created instance [redis-cart].
 
 4. Verify that the Redis service is reachable from the mesh network:
 
+<!-- ```
+kubectl run --generator=run-pod/v1 -i --tty busybox --image=busybox -- sh
+
+istioctl x add-to-mesh busybox
+``` -->
+
 ```
-kubectl -n default run --generator=run-pod/v1 -i --tty busybox --image=busybox -- sh
+kubectl apply -f <(istioctl kube-inject -f $WORKSHOP_HOME/istio-workshop-labs/busybox.yaml)
 ```
+
+
+```
+kubectl exec -it busybox /bin/sh -n default
+```
+
+Execute telnet against Redis instance IP:
 
 ```
 telnet REDIS_ADDR 6379
 ```
-
-telnet 10.0.0.3 6379
-
+You should get the connection established:
 ```
+# telnet 10.59.118.59  6379
+Connected to 10.59.118.59
+```
+
+<!-- ```
 kubectl -n default run -i --tty redisbox --image=gcr.io/google_containers/redis:v1 -- sh
 ```
 
 ```
 kubectl exec -it redisbox-5b9cfb548f-jsln2 -c istio-proxy -- sh
-```
+``` -->
 
-5. Edit `cartservice.yaml` under `$WORKSHOP_HOME/microservices-demo/kubernetes-manifests/cartservice.yaml`, then change the REDIS_ADDR value by the IP of the Redis HOST IP:
+
+<!-- 5. Let's now change the cart service to use the managed Redis instance. Edit `cartservice-deployment.yaml` under `$WORKSHOP_HOME/istio-workshop-labs/cartservice-deployment.yaml`, then change the REDIS_ADDR value by the IP of the Redis HOST IP:
 
 ```
 env:
@@ -82,9 +99,14 @@ env:
 ```
 
 
+Then apply the configuration:
 
 
-6. to restrict traffic to external world, we will enable outbound traffic registration:
+```
+kubectl replace -f <(istioctl kube-inject -f $WORKSHOP_HOME/istio-workshop-labs/cartservice-deployment.yaml)
+``` -->
+
+6. to restrict traffic to external world, we will enable outbound traffic registration using by setting  `global.outboundTrafficPolicymode` to `REGISTRY_ONLY`:
 
 ```
 helm upgrade --set global.outboundTrafficPolicymode=REGISTRY_ONLY  istio  $WORKSHOP_HOME/istio-$ISTIO_VERSION/install/kubernetes/helm/istio
@@ -93,11 +115,22 @@ helm upgrade --set global.outboundTrafficPolicymode=REGISTRY_ONLY  istio  $WORKS
 
 7. Let's retest Redis connection:
 
+```
+kubectl exec -it busybox /bin/sh -n default
 
+```
 
-As you mention, The managed redis instance is not reachable:
+```
+telnet REDIS_ADDR 6379
+```
 
-8. We will configure a  `ServiceEntry` rule to enable `cartservice` to initiate connection to redis host outside of mesh network:
+```
+# telnet 10.59.118.59  6379
+Connection closed by foreign host
+```
+As you mention, The managed Redis instance is not reachable:
+
+8. We will configure a  `ServiceEntry` rule to enable service within the mesh to initiate connection to Redis instance outside of mesh network:
 
 ```
 apiVersion: networking.istio.io/v1alpha3
@@ -106,7 +139,9 @@ metadata:
   name: redis-serviceentry
 spec:
   hosts:
-  - REDIS_ENDPOINT
+  - redis.domain # not used
+  addresses:
+  - REDIS_ENDPOINT # VIPs
   ports:
   - number: 6379
     name: tcp-redis
@@ -121,9 +156,14 @@ Edit `$WORKSHOP_HOME/istio-workshop-labs/redis-serviceentry.yaml` then replace t
 kubectl apply -f $WORKSHOP_HOME/istio-workshop-labs/redis-serviceentry.yaml
 ```
 
+Then test the connection:
 
+```
+telnet 10.59.118.59  6379
+Connected to 10.59.118.59
+```
 
-9. We will also create an ingress gateway and configure the service entry to flow traffic using
+9. We will also create an ingress gateway and configure the service entry to flow the traffic via the egress gateway:
 
 ```
 apiVersion: networking.istio.io/v1alpha3
@@ -139,7 +179,9 @@ spec:
       name: tcp-redis
       protocol: TCP
     hosts:
-    - REDIS_ENDPOINT
+    - redis.domain # not used
+    addresses:
+    - REDIS_ENDPOINT # VIPs
 ---
 apiVersion: networking.istio.io/v1alpha3
 kind: DestinationRule
@@ -157,4 +199,9 @@ Edit `$WORKSHOP_HOME/istio-workshop-labs/redis-egress.yaml` then replace the `RE
 kubectl apply -f $WORKSHOP_HOME/istio-workshop-labs/redis-egress.yaml
 ```
 
-10. Test Redis:
+10. Test Redis after enabling the egress:
+
+```
+telnet 10.59.118.59  6379
+Connected to 10.59.118.59
+```

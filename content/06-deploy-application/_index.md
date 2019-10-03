@@ -1,7 +1,7 @@
 ---
 title: "Deploy Hipster application"
 chapter: true
-weight: 5
+weight: 6
 ---
 
 ## Introducing the demo application

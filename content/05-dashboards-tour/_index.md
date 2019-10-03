@@ -1,7 +1,7 @@
 ---
 title: "Dashboards Tour"
 chapter: true
-weight: 6
+weight: 5
 ---
 # Dashboards Tour
 
@@ -21,5 +21,7 @@ Istio offers a flexible pluggable system so you could plug Istio to different ex
 You could also integrated you own system using the **Mixer Configuration Model**: [Mixer overview](https://istio.io/docs/reference/config/policy-and-telemetry/mixer-overview/)
 
 {{% /notice%}}
+
+![Istio mixer adapters ](/images/istio-mixer-adapters.png?width=50pc)
 
 {{% children showhidden="false" %}}

@@ -49,11 +49,11 @@ When a VirtualService is configured with a Gateway resource using `gateways` fie
 
 Actually, The Hispter commerce application is exposed to external world using a Kubernetes Controller LoadBalancer provided by the Cloud Provider:
 
-1. Get the cluster public IP:
+<!-- 1. Get the cluster public IP:
 ```
 export APP_LOADBALNACER=$(kubectl get service frontend-external -o jsonpath='{.status.loadBalancer.ingress[0].ip}' -n hipster-app)
 echo $APP_LOADBALNACER
-```
+``` -->
 
 1.  Delete the LoadBalancer service:
 

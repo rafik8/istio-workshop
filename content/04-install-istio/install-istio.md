@@ -136,9 +136,10 @@ istio-cni  1        0s
 ```
 
 ### Install Istio
+
 The last step installs Istio's core components:
 
-**Option 1**: setting command line parameters
+<!-- **Option 1**: setting command line parameters
 ```
 helm install $WORKSHOP_HOME/istio-$ISTIO_VERSION/install/kubernetes/helm/istio \
  --name istio --namespace istio-system --set tracing.enabled=true \
@@ -147,11 +148,11 @@ helm install $WORKSHOP_HOME/istio-$ISTIO_VERSION/install/kubernetes/helm/istio \
 
 or
 
-**Option 2**: Using value file
+**Option 2**: Using value file-->
 ```
 helm install $WORKSHOP_HOME/istio-$ISTIO_VERSION/install/kubernetes/helm/istio --name istio --namespace istio-system  -f $WORKSHOP_HOME/istio-workshop-labs/istio-srecon-values.yaml
 ```
 
-- `istio_cni.enabled=true`: we are enabling istio cni to handle iptables configuration instead of Istio init.
+<!-- - `istio_cni.enabled=true`: we are enabling istio cni to handle iptables configuration instead of Istio init.
 
-- `grafana.enabled=true`: enable grafana dashboard.
+- `grafana.enabled=true`: enable grafana dashboard. -->

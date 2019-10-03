@@ -2,7 +2,7 @@
 title: "Securing Ingress Gateway with Let's Encrypt"
 chapter: true
 weight: 2
-draft: false
+draft: true
 ---
 # Securing Ingress Gateway with Let's Encrypt
 

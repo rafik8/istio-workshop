@@ -3,4 +3,6 @@ title: "Understand sidecar logs"
 chapter: true
 weight: 2
 ---
-## Understand sidecar logs
+## Understand proxy logs
+
+{{< tweet 1157029140693995521 >}}

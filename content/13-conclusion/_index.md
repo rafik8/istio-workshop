@@ -2,47 +2,23 @@
 title: "Conclusion and takeaways"
 chapter: true
 weight: 13
-draft: true
 ---
 # Conclusion and takeaways
 
 
+- The network is definitely NOT reliable.
 
-The network is definitely NOT reliable.
+- Istio bring tools to DevOps and SRE to manage network concerns on behalf of  Dev teams letting then focus on delivering business value.
 
+- The sidecar patterns tackles microservices concerns in a uniform and declarative way.
 
-Facts you may know about Istio
+- “**Istio can (and should) be adopted incrementally.**” _Christian Posta_, Istio in Action
 
+- Benchmark other service mesh technologies: [Linkerd](https://linkerd.io) is an option to consider also.
 
-Istio in progduction
+- Service mesh maturity model:
 
-
-Embrace the technology icrementally.
-
-3 words about Service Mesh:
-
-Declarative, uniform and universal, application oriented (Bringing value immediately)
-
-
-
-SMI:
-
-
-Coming next**: Service Mesh Maturity Model
-
-
-
-
-
-Try it: Kanative: serverless platform
-
-
-
-
-Closing phrase:
-
-“**Istio can (and should) be adopted incrementally.**” Christian Posta, Istio in Action
-
+![Service mesh maturity model](/images/service-mesh-maturity-model-v0.1.png)
 
 
 {{% children showhidden="false" %}}

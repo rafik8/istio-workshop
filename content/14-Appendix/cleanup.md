@@ -33,7 +33,7 @@ helm ls
 
 kubectl -n istio-system delete job --all
 kubectl delete namespace istio-system
-kubectl delete -f istio-$ISTIO_VERSION/install/kubernetes/helm/istio-init/files
+kubectl delete -f $WORKSHOP_HOME/istio-$ISTIO_VERSION/install/kubernetes/helm/istio-init/files
 ```
 
 ## Delete Kubernetes cluster

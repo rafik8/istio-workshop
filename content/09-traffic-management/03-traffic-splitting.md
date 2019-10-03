@@ -8,7 +8,7 @@ weight: 3
 
 ## The pattern
 
-TODO: Add Schema here for illustration.
+![Istio traffic splitting](/images/istio-traffic-splitting.png?width=40pc)
 
 ## How it works
 
@@ -23,6 +23,48 @@ The traffic splitting is handled by two Istio Object:
 - **VirtualService**: A [VirtualService](https://istio.io/docs/reference/config/networking/v1alpha3/virtual-service/) define a set of traffic routing rules to apply when a host is addressed.
 
 - **DestinationRule**: A [DestinationRule](https://istio.io/docs/reference/config/networking/v1alpha3/destination-rule/) define policies that apply to traffic intended for a service after routing has occurred.
+
+We create a `VirtualService` that list the different variation with their the weight:
+
+```
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: service-a
+spec:
+  hosts:
+    - service-a
+  http:
+    - route:
+        - destination:
+            host: service-a
+            subset: v1
+          weight: 80
+        - destination:
+            host: service-a
+            subset: v2
+          weight: 20
+```
+
+
+
+Then the `DestinationRule` is responsible for defining the destination of the traffic and the traffic policy:
+
+```
+apiVersion: networking.istio.io/v1alpha3
+kind: DestinationRule
+metadata:
+  name: property-business-service
+spec:
+  host: property-business-service
+  subsets:
+    - name: v1
+      labels:
+        version: "1.0"
+    - name: v2
+      labels:
+        version: "1.1"
+```
 
 
 ## Traffic Splitting in practice
@@ -56,57 +98,103 @@ skaffold run -p gcb --default-repo=gcr.io/$PROJECT_ID
 it will take around 3 minutes.
 Meanwhile let's explore manifests: -->
 
+Let's assume the we have new version of the `frontend` service where the advertise banner is in the top:
 
-5. Deploy  the manifests:
+![Frontend service versions](/images/frontend-versions.png?width=50pc)
+
+1. The Deploy  the new version:
 
 ```
 kubectl apply -f <(istioctl kube-inject -f $WORKSHOP_HOME/istio-workshop-labs/frontend-0.1.3.yaml)
 ```
 
-6. Apply DestinationRule:
-
-
-```
-kubectl apply -f ../frontend-ingress.yaml
-```
+1. Extend the `VirtualService` of frontend service the destination:
 
 ```
-kubectl apply -f ../frontend-destinationrule.yaml
+http:
+- match:
+  - uri:
+      prefix: /
+  route:
+  - destination:
+      host: frontend
+      port:
+        number: 80
+      subset: v1
+    weight: 80
+  - destination:
+      host: frontend
+      port:
+        number: 80
+      subset: v2
+    weight: 50
 ```
-7. Refresh you browser:
+
+
+Apply the DestinationRule:
+
+```
+kubectl apply -f $WORKSHOP_HOME/istio-workshop-labs/frontend-virtualservice.yaml
+```
+
+1. Create a `DestinationRule` to specify the traffic destination:
+
+```
+apiVersion: networking.istio.io/v1alpha3
+kind: DestinationRule
+metadata:
+  name: frontend-destination-rule
+spec:
+  host: frontend
+  subsets:
+    - name: v1
+      labels:
+        version: "v0.1.2"
+    - name: v2
+      labels:
+        version: "v0.1.3"
+```
+
+Apply the DestinationRule:
+
+```
+kubectl apply -f $WORKSHOP_HOME/istio-workshop-labs/frontend-destinationrule.yaml
+```
+
+1. Wait a few second so the configuration will be pushed to envoy sidecars the refresh you browser:
+You have to get `version 1` **four time** before getting `version 2` of the frontend service rendered.
 
 
 
-8. Check traffic on Kiali:
+## Check traffic on Kiali:
 
-As mentionned earlier, Kiali provides a great real time view of what is going on the cluster.
+As mentioned earlier, Kiali provides a great real time view of what is going on the cluster:
 
-run the script as following:
+<!-- run the script as following:
 
 ```
 ./$WORKSHOP_HOME/istio-workshop-labs/hipster-curl-loop.sh
-```
+``` -->
 
-
-Launch Kiali dashboard:
+1. Launch Kiali dashboard:
 ```
 istioctl dashboard kiali
 ```
-Select **hipster-app** namespace **Graph** on the left menu then select **Versioned App Graph**, ** Request Poucentage ** as Options:
+1. Select **hipster-app** namespace **Graph** on the left menu then select **Versioned App Graph**, **Request Percentage** as Options:
 
 ![Kiali Traffic Splitting](/images/kiali-traffic-splitting-1.png?width=30pc)
 
 ![Kiali Traffic Splitting](/images/kiali-traffic-splitting-2.png?width=30pc)
 
-On the **Display menu**, check  **Display menu**:
+1. On the **Display menu**, check  **Display menu**:
 
 ![Kiali Traffic Splitting](/images/kiali-traffic-splitting-3.png?width=10pc)
 
-Graph will show the real traffic poucentage between the different versions:
+Graph will show the real traffic percentage between the different versions:
 
-![Kiali Traffic Splitting](/images/kiali-traffic-splitting-4.png?width=50pc)
+![Kiali Traffic Splitting](/images/kiali-traffic-splitting-5.png?width=50pc)
 
 
 
-## Exercise:
-Traffic Shifting.
+<!-- ## Exercise:
+Traffic Shifting. -->

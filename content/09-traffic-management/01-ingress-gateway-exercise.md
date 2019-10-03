@@ -12,7 +12,7 @@ weight: 1
 echo $INGRESS_IP
 ```
 
-1. Configure Cloud DNS with `dashboard.**dashboard**-srecon19.innovlabs.io` to point to the Ingress Gateway:
+1. Configure Cloud DNS with `dashboard.domain-srecon19.innovlabs.io` to point to the Ingress Gateway:
 
 
 ![Cloud DNS dashbaord record](/images/gcloud-dns-record-dashboard.png?width=40pc)

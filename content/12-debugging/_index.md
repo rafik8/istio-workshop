@@ -1,14 +1,9 @@
 ---
-title: "Istio CLI debug commands"
+title: "Istio Debugging"
 chapter: true
 weight: 12
 ---
 
-# Istio CLI debug commands
-
-1. check configuration:
-```
-istioctl x describe pod frontend-69577cb555-9th62
-```
+# Istio Debugging
 
 {{% children showhidden="false" %}}
