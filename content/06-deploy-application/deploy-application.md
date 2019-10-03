@@ -26,7 +26,7 @@ kubectl config set-context --current --namespace=hipster-app
 1. Deploy hipster application:
 
 ```
-kubectl apply -f $WORKSHOP_HOME/istio-workshop-labs/hispter-app.yaml
+kubectl apply -f $WORKSHOP_HOME/istio-workshop-labs/hipster-app.yaml
 ```
 
 1. Deploy the LoadBalancer:

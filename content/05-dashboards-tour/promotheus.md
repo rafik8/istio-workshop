@@ -10,7 +10,7 @@ kubectl -n istio-system port-forward   $(kubectl -n istio-system get pod -l \
     app=prometheus -o jsonpath='{.items[0].metadata.name}') 9090:9090
 ``` -->
 ```
-istioctl dashboard jaeger
+istioctl dashboard prometheus
 ```
 
 2. The Prometheus UI will be opened in your default web browser:
