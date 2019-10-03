@@ -83,7 +83,7 @@ EoF
 2. Next apply the configuration:
 
 ```
-kubectl apply -f rbac.yaml
+kubectl apply -f $WORKSHOP_HOME/istio-workshop-labs/rbac.yaml
 ```
 
 ```
