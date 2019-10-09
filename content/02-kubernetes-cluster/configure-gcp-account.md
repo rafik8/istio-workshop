@@ -9,13 +9,13 @@ weight: 2
 1. Get the project ID:
 
 
+![GCP project ID](/images/gcloud-project-id.png?width=40pc  "GCP project ID")
+
 1. Set the default project (replace **PROJECT_ID** with the project during the event workshop or your own project):
 
 ```
 export PROJECT_ID=srecon19-workshop-250603
 ```
-
-![GCP project ID](/images/gcloud-project-id.png?width=40pc  "GCP project ID")
 
 ```
 gcloud config set project $PROJECT_ID

@@ -1,10 +1,8 @@
 ---
-title: "cleanup"
+title: "Cleanup"
 chapter: true
 weight: 1
 ---
-
-
 
 ## Undeploy sample application:
 
@@ -22,7 +20,6 @@ kubectl delete -f ./release/kubernetes-manifests.yaml
 
 
 ## Uninstall Istio
-
 
 ```
 helm delete istio --purge

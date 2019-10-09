@@ -55,12 +55,6 @@ Created instance [redis-cart].
 
 4. Verify that the Redis service is reachable from the mesh network:
 
-<!-- ```
-kubectl run --generator=run-pod/v1 -i --tty busybox --image=busybox -- sh
-
-istioctl x add-to-mesh busybox
-``` -->
-
 ```
 kubectl apply -f <(istioctl kube-inject -f $WORKSHOP_HOME/istio-workshop-labs/busybox.yaml)
 ```
@@ -80,31 +74,6 @@ You should get the connection established:
 # telnet 10.59.118.59  6379
 Connected to 10.59.118.59
 ```
-
-<!-- ```
-kubectl -n default run -i --tty redisbox --image=gcr.io/google_containers/redis:v1 -- sh
-```
-
-```
-kubectl exec -it redisbox-5b9cfb548f-jsln2 -c istio-proxy -- sh
-``` -->
-
-
-<!-- 5. Let's now change the cart service to use the managed Redis instance. Edit `cartservice-deployment.yaml` under `$WORKSHOP_HOME/istio-workshop-labs/cartservice-deployment.yaml`, then change the REDIS_ADDR value by the IP of the Redis HOST IP:
-
-```
-env:
-- name: REDIS_ADDR
-  value: "10.x.x.x:6379"
-```
-
-
-Then apply the configuration:
-
-
-```
-kubectl replace -f <(istioctl kube-inject -f $WORKSHOP_HOME/istio-workshop-labs/cartservice-deployment.yaml)
-``` -->
 
 6. to restrict traffic to external world, we will enable outbound traffic registration using by setting  `global.outboundTrafficPolicymode` to `REGISTRY_ONLY`:
 

@@ -4,12 +4,10 @@ chapter: true
 weight: 2
 ---
 
-1. Use `istioctl dashboard` command line to Establish a secure tunnel to the Jaeger pod:
+# tracing
 
-<!-- ```
-kubectl -n istio-system port-forward $(kubectl -n istio-system get pod -l \
-    app=jaeger -o jsonpath='{.items[0].metadata.name}') 16686:16686
-``` -->
+1. Use `istioctl dashboard` command line to establish a secure tunnel to the Jaeger pod:
+
 
 ```
 istioctl dashboard jaeger

@@ -57,11 +57,11 @@ As we will install Istio using helm, first create a service account for Tiller:
 
 ### Istio namespace
 
-<!-- Create a namespace for the istio-system components:
+Create a namespace for the istio-system components:
 
 ```
 kubectl create namespace istio-system
-``` -->
+```
 
 ### Install Istio CRDs
 The [Custom Resource Definitions, also known as CRDs](https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources/#customresourcedefinitions) are API resources which allow you to define custom resources.
@@ -93,7 +93,7 @@ istio-init	1       	Sat Aug 31 15:44:51 2019	DEPLOYED	istio-init-1.3.0	1.3.0    
 
 ## Install Istio CNI
 
-As discussed in the building blocks chapter, (Istio CNI)[https://github.com/istio/cni] is responsible for setting up Kubernetes pod namespaces to redirect traffic to sidecar proxy.
+As discussed in the building blocks chapter, [Istio CNI](https://github.com/istio/cni) is responsible for setting up Kubernetes pod namespaces to redirect traffic to sidecar proxy.
 
 ```
 helm install $WORKSHOP_HOME/istio-$ISTIO_VERSION/install/kubernetes/helm/istio-cni \

@@ -12,12 +12,10 @@ We will be creating a cluster on Google’s Kubernetes Engine (GKE). We will pro
 {{% notice note %}}
 To avoid conflicts with your personal account, please open a new incognito window for the rest of this lab.
 ![Incognito window](/images/incognito-window.png?width=10pc)
-<!-- <img src="/images/incognito-window.png" alt="Incognito window"
-	title="Incognito windown" width="147" height="111" /> -->
 {{% /notice%}}
 
 
-1. Sign in to the Google Cloud Platform Console: https://console.cloud.google.com/ with the provided credentials. In Welcome to your new account dialog, click Accept.
+1. Sign in to the Google Cloud Platform Console: https://console.cloud.google.com/ with the provided credentials. In _Welcome to your new account dialog_, click Accept.
 
 ![Incognito window](/images/google-consent.png?width=30pc)
 
@@ -69,9 +67,9 @@ Enable **Boost Mode** upgrades the shell instance from **g1-small** to **n1-stan
 
 1. Install the gcloud CLI by following the instruction on : https://cloud.google.com/sdk/docs/downloads-interactive.
 
-1. Install the [gcloud](https://cloud.google.com/sdk/docs/downloads-interactive) command line utility and configure your project with gcloud init.
+1. Configure your project with gcloud init.
 
-```shell
+```
 gcloud version
 ```
 
@@ -83,26 +81,14 @@ core 2019.09.22
 gsutil 4.42
 ```
 
-<!-- 1. Execute `init` command and fellow the instructions to to configure your account:
-
-```shell
-gcloud init
-```
-
-1. Check gcloud is installed:
-
-```shell
-gcloud auth list
-```
-
-1. if you you have already  gcloud cli installed, just add the training account as following: -->
 
 1. Configure your profile on `gcloud` account using :
 
-```shell
+```
 gcloud init
 ```
-1. Choose the option `[2] Create a new configuration` then choose a configuration name (for example: `**istioworkshop-srecon19**`)
+
+1. Choose the option `[2] Create a new configuration` then choose a configuration name (for example: `istioworkshop-srecon19`)
 
 1. Then choose option `[2] Log in with a new account`, Enter the email address of the Google Account provided for the training. You browser will be opened so you could grant access to gcloud cli.
 

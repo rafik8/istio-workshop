@@ -1,5 +1,5 @@
 ---
-title: Credits
+title: Authors
 disableToc: true
 ---
 

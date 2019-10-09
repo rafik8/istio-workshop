@@ -36,16 +36,12 @@ kubectl apply -f $WORKSHOP_HOME/istio-workshop-labs/frontend-external-service.ya
 ```
 
 1. Deploy `loadgenerator` service:
-
 ```
 kubectl apply -f $WORKSHOP_HOME/istio-workshop-labs/loadgenerator.yaml
 ```
-
-{{% notice info %}}
-The load generator application will simulate end user traffic.
-{{% /notice%}}
-
-
+  {{% notice info %}}
+  The load generator application will simulate end user traffic.
+  {{% /notice%}}
 1. Check that all pods are deployed:
 
 ```

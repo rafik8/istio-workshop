@@ -57,6 +57,6 @@ spec:
 kubectl apply -f $WORKSHOP_HOME/istio-workshop-labs/shippingservice-retry.yaml
 ```
 
-3.  Check out the Grafana graphs to view the success rate:
+<!-- 3.  Check out the Grafana graphs to view the success rate:
 
-![Grafana Circuit Breaker](/images/grafana-circuit-breaker.png?width=70pc)
+![Grafana Retry Strategy](/images/grafana-retry-strategy.png?width=70pc) -->

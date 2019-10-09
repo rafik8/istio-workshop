@@ -5,7 +5,7 @@ weight: 1
 ---
 # Download Istio
 
-1. We will create working directory for the workshop that we will refer it by environment variable: `WORKSHOP_HOME`.
+1. We will create working directory for the workshop that we will refer it by  the environment variable: `WORKSHOP_HOME`.
 
 ```
 mkdir ~/istio-workshop && cd ~/istio-workshop
@@ -50,7 +50,7 @@ Below an overview on an Istio release package:
 
 ![Istio package anatomy](/images/istio-package-anatomy.png?width=40pc  "Istio package anatomy")
 
-We can categorise Istio release package into 4 sections:
+We can categorize Istio release package into 4 sections:
 
 - `bin/istioctl`: is the CLI for the Istio control plane similar to `kubectl`.
 
@@ -59,49 +59,3 @@ We can categorise Istio release package into 4 sections:
 - `sample`: contains various samples to get started with Istio and embrace its features.
 
 - `tools`: contains tooling for perf testing, etc ...
-
-<!-- ```
-istio-1.3.0/
-├── bin
-|   └── istioctl
-├── install
-│   ├── consul
-│   ├── gcp
-│   ├── kubernetes
-|   |   ├── helm
-│   │   └── operator
-│   └── tools
-│       ├── setupIstioVM.sh
-│       └── setupMeshEx.sh
-├── samples
-│   ├── bookinfo
-│   ├── certs
-│   ├── custom-bootstrap
-│   ├── external
-│   ├── fortio
-│   ├── health-check
-│   ├── helloworld
-│   ├── httpbin
-│   ├── https
-│   ├── kubernetes-blog
-│   ├── rawvm
-│   ├── sleep
-│   ├── tcp-echo
-│   └── websockets
-└── tools
-    ├── checker
-    ├── docker-dev
-    ├── githubContrib
-    ├── hyperistio
-    ├── istio-iptables
-    ├── license
-    ├── packaging
-    └── vagrant
-``` -->
-
-
-
-<!-- // version can be different as istio gets upgraded
-//cd istio-*
-
-//sudo mv -v bin/istioctl /usr/local/bin/ -->

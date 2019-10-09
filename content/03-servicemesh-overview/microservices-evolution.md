@@ -32,17 +32,6 @@ Adoting microservices oriented architecture bring new challenges:
 
 
 
-The only value visible from business stackhelder is the business service so we have a develop a bench of microservices concerns to deliver a business value.
+The only value visible from business stakeholders is the business service so we have a develop a bench of microservices concerns to deliver a new business value.
 
 ![Microservices evolution](/images/microservices-iceberg.png)
-
-
-
-<!-- ## The need of a service Mesh
-
-## Service mesh basics
-Service mesh solutions have two distinct components that behave somewhat differently: 1) a data plane, and 2) a control plane. The following diagram illustrates the basic architecture.
-
-The data plane is composed of a set of intelligent proxies (Envoy) deployed as sidecars. These proxies mediate and control all network communication between microservices along with Mixer, a general-purpose policy and telemetry hub.
-
-The control plane manages and configures the proxies to route traffic. Additionally, the control plane configures Mixers to enforce policies and collect telemetry. -->

@@ -17,7 +17,7 @@ Istio operator will be the default and production recommended option.
 
 ## Install Helm CLI
 
-Before we start configuring helm we’ll need firstly to install the command line tool that you will interact with the server side of Helm (Tiller).
+Before we start configuring helm, we’ll need firstly to install the command line tool that you will interact with the server side of Helm (Tiller).
 
 1. Run the following command to install helm CLI:
 
@@ -54,10 +54,9 @@ Helm relies on a service called **tiller** that requires special permission on t
 kubernetes cluster, so we need to build a _**Service Account**_ for **tiller**
 to use. We'll then apply this to the cluster.
 
-1. Create a new service account manifest:
+1. We will create a new service account for helm with `cluster-admin` Role:
 
 ```
-cat <<EoF > rbac.yaml
 ---
 apiVersion: v1
 kind: ServiceAccount
@@ -77,7 +76,6 @@ subjects:
   - kind: ServiceAccount
     name: tiller
     namespace: kube-system
-EoF
 ```
 
 2. Next apply the configuration:

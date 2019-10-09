@@ -6,43 +6,14 @@ weight: 1
 
 # Enable Istio for Hispter app
 
-<!-- 1. We need first to label the namespace that will host the application with `istio-injection=enabled`. this is will enable automatic deploy of the envoy sidecar for each pod deployed.
 
-```
-kubectl label namespace hipster-app istio-injection=enabled
-```
-
-2. We need to redeploy the hipster application. Let's delete the application and redeploy it so pods will be created with the sidecar.
-
-```
-skaffold delete
-```
-
-Deploy the application:
-
-```
-skaffold run --default-repo=gcr.io/$PROJECT_ID
-```
-
-```
-$WORKSHOP_HOME/istio-workshop-labs/deploy-hipster-app.sh
-``` -->
 
 2. Inject sidecar envoy proxies using the following command:
-
 ```
 kubectl apply -f <(istioctl kube-inject -f $WORKSHOP_HOME/istio-workshop-labs/hipster-app.yaml)
 ```
 
-
-<!-- ```
-kubectl apply -f $WORKSHOP_HOME/istio-workshop-labs/loadgenerator.yaml
-``` -->
-
-
-
 1. Check that all services and pods are correctly deployed and running:
-
 ```
 kubectl get services
 ```
