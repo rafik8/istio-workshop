@@ -3,7 +3,7 @@ title: "Observability"
 chapter: true
 weight: 1
 ---
-# Visualizing Your Mesh with Kiala
+# Visualizing Your Mesh with Kiali
 
 Kiali enable service mesh visualizing and Observability by providing a set of views to inspect services running within the mesh:
 
