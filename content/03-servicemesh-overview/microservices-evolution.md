@@ -20,9 +20,9 @@ Such microservices architectures provide agility to development teams. But, it a
 
 ## Microservices challenges
 
-Adoting microservices oriented architecture bring new challenges:
+Adopting a microservices oriented architecture brings new challenges:
 
-- N to N communications.
+- M to N communication.
 - Distributed software interconnection and troubleshooting is hard.
 - Containers should stay thin and platform agnostic.
 - Upgrade of polyglot microservices is hard at scale.
