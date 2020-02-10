@@ -21,7 +21,7 @@ Unlike [Kubernetes Ingress Resources](https://kubernetes.io/docs/concepts/servic
 
 ## How it works
 
-The Ingress Resource is is handled by two Istio Resources:
+The Ingress Resource is handled by two Istio Resources:
 
 | Resource         | API                 | Version    |
 | -----------------| --------------------|----------- |
