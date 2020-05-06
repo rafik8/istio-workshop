@@ -161,8 +161,8 @@ Apply the DestinationRule:
 kubectl apply -f $WORKSHOP_HOME/istio-workshop-labs/frontend-destinationrule.yaml
 ```
 
-1. Wait a few second so the configuration will be pushed to envoy sidecars the refresh you browser:
-You have to get `version 1` **four time** before getting `version 2` of the frontend service rendered.
+Wait a few seconds so the configuration will be pushed to envoy sidecars then refresh your browser:
+You have to get `version 1` **four times** before getting `version 2` of the frontend service rendered.
 
 
 
