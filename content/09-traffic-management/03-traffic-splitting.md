@@ -127,7 +127,7 @@ http:
       port:
         number: 80
       subset: v2
-    weight: 50
+    weight: 20
 ```
 
 
