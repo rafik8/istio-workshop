@@ -20,9 +20,9 @@ The traffic splitting is handled by two Istio Object:
 | VirtualService   | networking.istio.io | v1alpha3   |
 | DestinationRule  | networking.istio.io | v1alpha3   |
 
-- **VirtualService**: A [VirtualService](https://istio.io/docs/reference/config/networking/v1alpha3/virtual-service/) define a set of traffic routing rules to apply when a host is addressed.
+- **VirtualService**: A [VirtualService](https://istio.io/docs/reference/config/networking/v1alpha3/virtual-service/) defines a set of traffic routing rules to apply when a host is addressed.
 
-- **DestinationRule**: A [DestinationRule](https://istio.io/docs/reference/config/networking/v1alpha3/destination-rule/) define policies that apply to traffic intended for a service after routing has occurred.
+- **DestinationRule**: A [DestinationRule](https://istio.io/docs/reference/config/networking/v1alpha3/destination-rule/) defines policies that apply to traffic intended for a service after routing has occurred.
 
 We create a `VirtualService` that list the different variation with their the weight:
 
@@ -131,7 +131,7 @@ http:
 ```
 
 
-Apply the DestinationRule:
+Apply the VirtualService:
 
 ```
 kubectl apply -f $WORKSHOP_HOME/istio-workshop-labs/frontend-virtualservice.yaml
