@@ -186,7 +186,7 @@ istioctl dashboard kiali
 
 ![Kiali Traffic Splitting](/images/kiali-traffic-splitting-2.png?width=30pc)
 
-1. On the **Display menu**, check  **Display menu**:
+1. On the **Display menu**, check  **Traffic Animation**:
 
 ![Kiali Traffic Splitting](/images/kiali-traffic-splitting-3.png?width=10pc)
 
