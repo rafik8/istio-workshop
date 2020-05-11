@@ -5,12 +5,12 @@ weight: 8
 ---
 
 # Egress Gateway
-In a typical enterprise scenario service have to declare their external(s) in a declarative way following the pattern of principle of least access. Service mesh solutions including Istio promote Egress gateway that control oubound connection and managed authorization in a declarative way.
+In a typical enterprise scenario, services have to declare their external(s) in a declarative way following the pattern of principle of least access. Service mesh solutions including Istio promote Egress gateway that control outbound connection and managed authorization in a declarative way.
 
 
 ## The pattern
 
-The service mesh is deployed to no enable outbound traffic to external services. We need to explicitly allow traffic to external service using ServiceEntry.
+The service mesh is deployed to not enable outbound traffic to external services. We need to explicitly allow traffic to external services using ServiceEntry.
 
 A [ServiceEntry](https://istio.io/docs/reference/config/networking/v1alpha3/service-entry/) configuration enables services within the mesh to access a service not necessarily managed by Istio. The rule describes the endpoints, ports and protocols of a white-listed set of mesh-external domains and IP blocks that services in the mesh are allowed to access.
 
@@ -18,8 +18,8 @@ A [ServiceEntry](https://istio.io/docs/reference/config/networking/v1alpha3/serv
 
 ## Egress in practice
 
-The `Cart Service` is backed a Redis database used for caching items added to the cart.
-In order to enhance the operations, Let's assumes that we decide to move to Redis database and use The managed Redis Service from _Google Cloud Platform_: [CLOUD MEMORYSTORE
+The `Cart Service` is backed by a Redis database used for caching items added to the cart.
+In order to enhance the operations, Let's assume that we decide to move to the Redis database and use The managed Redis Service from _Google Cloud Platform_: [CLOUD MEMORYSTORE
 ](https://cloud.google.com/memorystore/).
 
 ![Istio Egress example](/images/istio-egress-example.png)
