@@ -32,6 +32,6 @@ Adopting a microservices oriented architecture brings new challenges:
 
 
 
-The only value visible from business stakeholders is the business service so we have a develop a bench of microservices concerns to deliver a new business value.
+The only value visible from business stakeholders is the business service so we have to develop a bench of microservices concerns to deliver a new business value.
 
 ![Microservices evolution](/images/microservices-iceberg.png)
