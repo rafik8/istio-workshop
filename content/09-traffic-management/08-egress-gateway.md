@@ -132,7 +132,7 @@ telnet 10.59.118.59  6379
 Connected to 10.59.118.59
 ```
 
-9. We will also create an ingress gateway and configure the service entry to flow the traffic via the egress gateway:
+9. We will also create an egress gateway and configure the service entry to flow the traffic via the egress gateway:
 
 ```
 apiVersion: networking.istio.io/v1alpha3
